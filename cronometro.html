@@ -1,0 +1,94 @@
+<DOCTYPE html>
+<html>
+    <head>
+	<style>
+           
+	    #container{
+            background-color: blue;
+	     	width : 160px;
+		    height : 120px;
+		    margin-top : 100px;
+		    margin-left: 400px;
+		    float : left;
+        }
+
+        button {
+		    background-color : rgba(123,45,134,0.6);
+            width : 90%;
+            height : 45%;
+            margin-top : 5%;
+            margin-left : 10px;
+            color : white;
+            float : left;
+        }
+
+	    #cronometro{
+		    background-color : rgba(17,18,18,0.2);
+		    width : 90%;
+		    height : 35%;
+            margin-top : 5%;
+            margin-left : 5%;
+		    float : left;
+	    }
+
+       .tiempos{
+            background-color : rgba(17,18,18,0.8);
+            width : 30%;
+            height : 70%;
+            margin-top : 3.5%;
+            margin-left : 3%;
+            color : white;
+		    text-align : center;
+            border-radius : 10px;
+            float : left;
+        } 
+
+	</style>
+	<title> cronometro </title>
+	<meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    </head>
+        
+        <div id="container">
+            <button id="botCronometro"> cronometro </button>
+            <div id= "cronometro">
+                <div id = "horas" class="tiempos">
+                   00
+                </div>
+                <div id = "minutos" class="tiempos">
+                   00
+                </div>
+                <div id="segundos" class="tiempos"> 
+                   00
+                </div>
+            </div>
+        </div>
+	<script> 
+        let boton = document.getElementById("botCronometro");
+        estado = 0;
+            
+        boton.addEventListener("click", function(){
+        	if(estado == 0){
+                document.getElementById("container").style.backgroundColor = "blue";
+        	    tiempo = setInterval(cronometro, 1000);
+        	    estado = 1;		
+        	}  
+        }); 
+
+	    let dato = 0;
+	    function cronometro(){                
+                if(dato < 60){
+                    document.getElementById("segundos").innerHTML = dato; 
+                    dato++; 
+                } else { 
+                     clearInterval(tiempo);
+                     dato = 0;
+                     estado = 0;
+                     document.getElementById("container").style.backgroundColor = "red";
+                  }   
+            }
+
+	</script>
+    <body>
+    </body>
+</html>

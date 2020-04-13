@@ -1,0 +1,23 @@
+<DOCTYPE html>
+<html>
+    <head>
+	<title> cuantas vocales </title>
+	<meta charset = "UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0"> 
+    </head>
+    <body>
+	<script>
+	    let palabra = prompt("escriba la palabra");
+            let vocales = ["a","e","i","o","u","A","E","I","O","u"];
+            var vocal = 0;
+            for ( i = 0 ; i < vocales.length ; i++){
+		for (j = 0; j < palabra.length  ;j++){
+                    if( palabra[j] == vocales [i]){
+                        vocal ++;            
+                    }
+                }
+            }
+             document.write(`la palabra:  ${palabra} <br> tiene ${vocal} vocales`)
+	</script>
+    </body>
+</html>

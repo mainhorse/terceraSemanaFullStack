@@ -1,0 +1,106 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #container{
+		        background-color : rgba(170,90,18,0.8);
+                width : 200px;
+                height : 200px;
+ 		        float : left;
+            }
+
+	        #numero {
+		        width : 90%;
+		        height : 20%;
+		        margin-top : 5%;
+		        margin-left: 5%;
+                font-size: 32px;
+                text-align: center;
+                color : black;
+		        float :left;
+            }
+
+	        button {
+                background-color : transparent;
+                width : 90%;
+		        height : 20%;
+		        margin-top : 5%;
+		        margin-left: 5%;
+                font-size : 24px;
+                color : white;
+		        float :left;
+            }
+
+	        #resultado{
+               	background-color : white;
+                width : 90%;
+		        height : 20%;
+		        margin-top : 5%;
+		        margin-left: 5%;
+                font-size : 24px;
+                color : black;
+                text-align : center;
+		        float :left;
+
+            } 
+
+	        #conversion{
+             	background-color : white;
+                width : 90%;
+		        height : 15%;
+		        margin-top : 5%;
+		        margin-left: 5%;
+                font-size : 24px;
+      	        color : black;
+                text-align : center;
+		        float :left;
+            }
+
+        </style>
+	<title> Numeros Romanos </title>
+	<meta charset = "UTF-8">
+	<meta name="viewport" content ="width=device-width, initial-scale =1.0">
+    </head>
+    <body>
+	<div id= "container">
+	    <input id="numero">
+	    </input>
+	    <button id="boton1"> convertir </button>
+        <div id="resultado">
+        </div>
+        <label id="conversion"> Numero Romano </label>
+	    <script>
+ 		var coNumeros = [["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"],
+                                 ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
+                                 ["","I","II","III","IV", "V", "VI","VII","VIII","IX"]];
+                
+                conversion = "";
+                b1 = document.getElementById("boton1");
+                b1.addEventListener("click", function(){
+
+                    dato = document.getElementById("numero").value;
+                    unidad = 0;
+                    decena = 0;
+                    centena = 0;
+                    if(dato == 1000){
+                        document.getElementById("resultado").innerHTML = "M"; 
+                    }
+                    else if( dato.length == 1){
+                        unidad = dato ;
+                        document.getElementById("resultado").innerHTML = coNumeros[2][unidad];
+                    } else if(dato.length == 2) {
+                        decena = coNumeros[1][dato[0]];
+                        unidad = coNumeros[2][dato[1]];
+                        document.getElementById("resultado").innerHTML = `${decena}${unidad}`; 
+                    } else if(dato.length == 3){
+                        centena = coNumeros[0][dato[0]];
+                        decena = coNumeros[1][dato[1]];
+                        unidad = coNumeros[2][dato[2]];
+                        document.getElementById("resultado").innerHTML = `${centena}${decena}${unidad}`; 
+                    } 
+                });
+		                 
+	    </script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #container{
+		        background-color : rgba(14,126,28,0.3);
+		        width : 600px;
+  		        height : 400px;
+                margin-top : 20px;
+                margin-left : 20px;
+                border : 2px solid rgba(34,126,98,0.8);
+                border-radius : 10px;
+		        float : left;
+
+ 	        }
+
+ 	        #conTribotones{
+ 	        	width : 60%;
+ 	        	height: 100%;
+ 	        	float : left;
+ 	        }
+             
+	        .containerPiece{
+		        background-color : rgba(34,126,98,0.6);
+		        width : 100%;
+  		        height : 30%;
+                margin-top : 1.5%;
+                margin-left : 3%;
+		        float : left;
+	        }
+            
+            button{
+                background-repeat : none;
+                background-size : 100% 100%;
+		        width : 30%;
+  		        height : 90%;
+                margin-top : 2%;
+                margin-left : 3%;
+		        float : left;
+ 	        }
+
+            #derecho{
+		        background-color : rgba(34,126,98,0.6);
+		        width : 30%;
+  		        height : 95%;
+                margin-top : 1%;
+                margin-left: 5%;
+		        float : left;
+            }
+
+	        h1{
+	           width: 90%;
+	           height : 2%;
+		       text-align : center;
+               color : white;
+
+	        }
+             
+            h2{
+	           width: 90%;
+	           height : 2%;
+		       text-align : center;
+               color : white;
+	        } 
+
+
+            p{
+               width : 90%;
+               height : 45%;
+		       margin-left : 5%;
+               font-size : 16px;
+		       text-align : justify;
+               color : white;
+               float : left;
+            }
+
+            #botonPlay{
+                background-color: rgba(17,18,18,0.4);
+    		    width : 90%;
+		        height : 20%;
+		        margin-top : 5%;
+		        margin-left : 5%;
+                font-size : 28px;
+                color : white ;
+                border-radius : 10px;
+                border : 2px solid rgba(34,126,98,0.1);
+            }
+		
+        </style>
+	<title> triqui </title>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    </head>
+    <body>
+    	<div id="container">
+    		<div id="conTribotones">
+		        <div id="cont1" class="containerPiece">
+		            <button id="boton00" onClick="posicion(0,0);"> </button>
+	                <button id="boton01" onClick="posicion(0,1);"> </button>
+	                <button id="boton02" onClick="posicion(0,2);"> </button>
+	            </div>
+	            <div id="cont2" class="containerPiece">
+		            <button id="boton10" onClick="posicion(1,0);"> </button>
+	                <button id="boton11" onClick="posicion(1,1);"> </button>
+	                <button id="boton12" onClick="posicion(1,2);"> </button>
+	            </div>
+	            <div id="cont3" class="containerPiece">
+		            <button id="boton20" onClick="posicion(2,0);"> </button>
+	                <button id="boton21" onClick="posicion(2,1);"> </button>
+	                <button id="boton22" onClick="posicion(2,2);"> </button>
+	            </div>             
+            </div> 
+            <aside id="derecho">
+	            <h1> Triqui </h1>
+                <h2> Reglas </h2>
+                <p> Las reglas son simples, el que llene tres casillas, ya sea de arriba hacia abajo,
+                    o abajo hacia arriba en la misma columna, igual mente de forma horizontal llene toda
+                    la fila correspondiente o de forma diagonal gana.
+                </p>
+                <button id="botonPlay" onclick="empezar();"> Play game </button>
+            </aside>  
+	    </div>
+        
+	<script>
+		   start = false;
+           jugador = "primero";
+           var triqui = [["","",""],
+                         ["","",""],
+                         ["","",""]];
+            p = "";
+            s = ""; 
+            t = "";  
+            contador = 0;          
+            ganador = "";
+            canJugadas = 0;
+        function empezar(){
+        	start = true;
+        	let bEmpezar = document.getElementById("botonPlay");
+            bEmpezar.style.display = "none";
+        }                 
+
+	    function posicion(col,row){ 
+
+	       if(canJugadas < 9){    
+		        if(start == true){ 
+	               if( triqui[col][row] == ""){
+	               	   canJugadas++;
+	               	   console.log("primero " + canJugadas);
+			           if( jugador == "primero"){   
+	                        triqui[col][row] = "p";
+	                        let pos = "boton" + col + row;
+	                        let boton = document.getElementById(pos);
+	                        boton.style.backgroundImage = "url(primero.jpeg)";
+	                        jugador = "segundo"; 
+	                        validar();
+	                    } else if(jugador == "segundo"){
+	                        triqui[col][row] = "s";
+	                        let pos = "boton" + col + row;
+	                        let boton = document.getElementById(pos);
+	                        boton.style.backgroundImage = "url(segundo.jpeg)";
+	                        jugador = "primero";
+	                        validar();
+	                    } 		    
+	                }
+	            }         	
+	        } if(canJugadas >= 9){
+	        	console.log("segunda " + canJugadas);
+	        	document.getElementById("botonPlay").style.display = "block";
+	        	document.getElementById("botonPlay").innerHTML = `empate`; 
+	        	setTimeout(gano,3000);	
+	        }
+        }
+
+        function validar(){
+        	contador++;
+        	for(j = 1 ; j < 4 ; j++){
+        		opcion = j;
+        		switch(opcion){
+        	           case 1 : for(i = 0; i < 3 ; i++){
+	                                p = triqui[i][0];
+	                                s = triqui[i][1];
+	                                t = triqui[i][2];
+	                                if((p != "")&&(s != "")&&(t != "")){
+	   	                                if((p == s)&&(s == t)){ 
+	   	                                    quienGano();
+	   	                                	document.getElementById("botonPlay").style.display = "block";
+	   	                                    document.getElementById("botonPlay").innerHTML = `gano ${ganador}`;  
+	   	                                    setTimeout(gano,3000);
+	   	                                       
+	                                    }
+	                                }
+	                            }	 
+        	           break;
+        	           case 2:  for(i = 0; i < 3 ; i++){
+	                                p = triqui[0][i];
+	                                s = triqui[1][i];
+	                                t = triqui[2][i];
+	                                if((p != "")&&(s != "")&&(t != "")){
+	   	                                if((p == s)&&(s == t)){  
+	   	                                	quienGano();
+	   	                                	document.getElementById("botonPlay").style.display = "block";
+	   	                                    document.getElementById("botonPlay").innerHTML = `gano ${ganador}`;  
+	   	                                    setTimeout(gano,3000);
+	                                    }
+	                                }
+	                            }	   
+        	           break;
+        	           case 3:     p = triqui[0][0];
+	                               s = triqui[1][1];
+	                               t = triqui[2][2];
+	                               if((p != "")&&(s != "")&&(t != "")){
+	   	                               if((p == s)&&(s == t)){ 
+	   	                                   quienGano(); 
+	   	                               	   document.getElementById("botonPlay").style.display = "block";
+	   	                                   document.getElementById("botonPlay").innerHTML = `gano ${ganador}`;  
+	   	                                   setTimeout(gano,3000);
+	                                    }
+	                               }
+                                   p = triqui[0][2];
+	                               t = triqui[2][0];
+	                               if((p != "")&&(s != "")&&(t != "")){
+	   	                               if((p == s)&&(s == t)){  
+	   	                               	   quienGano();
+	   	                               	   document.getElementById("botonPlay").style.display = "block";
+	   	                                   document.getElementById("botonPlay").innerHTML = `gano ${ganador}`;   
+	   	                                   setTimeout(gano,3000);
+	                                    }
+	                               }  	   
+        	           break;
+        	           default:
+        	           break;		
+			    } 
+            } 
+        }
+
+       
+        function gano(){  	
+          location.reload();
+        }
+        
+        function quienGano(){
+        	if(contador % 2 == 1) {
+               ganador = "blancas";
+            } else {
+               ganador ="negras";
+            }
+            console.log("ganador");
+        }
+	    
+	</script>
+
+    </body>
+</html>

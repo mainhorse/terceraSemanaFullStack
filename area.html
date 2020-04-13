@@ -1,0 +1,49 @@
+<DOCTYPE html>
+<html>
+    <head>
+	<title> areas </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    </head>
+    <body>
+	<script>
+            var base;
+            var altura;
+            var area;
+            function datos(area){
+           	base = Number(prompt("base"));
+                altura = Number(prompt("altura"));
+                if(area == 1)       area = base*altura; 
+                else if(area == 2)  area = base*altura;
+                else if(area == 3)  area = (base*altura)/2;
+                else                area = Math.PI*base*base;
+
+                document.write(`El area es: ${area.toFixed(1)} m2`);
+                
+            }
+	    dato = Number(prompt(`Figuras geometricas:
+                   ingrese 1: para calcular el area del Cuadrado 
+                   ingrese 2: para calcular el area del Rectangulo 
+                   ingrese 3: para calcular el area del triangulo 
+                   ingrese 4: para calcular el area del circulo `));
+           
+            switch(dato){
+		case 1 : 
+			datos(1);                       
+		break;
+		case 2:
+			datos(2);
+		break;
+		case 3:
+			datos(3);
+		break;
+		case 4:
+			datos(4);
+		break;
+                default:
+                        alert("el dato es erroneo");
+                break;
+            }
+	</script>
+    </body>
+</html>

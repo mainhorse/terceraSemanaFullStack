@@ -1,0 +1,32 @@
+<DOCTYPE html>
+<html>
+    <head>
+	<title> multiplos de 8 </title>
+        <meta charset = "UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    </head>
+    <body>
+        <div id="container">
+        </div>
+	<script>
+            alert("este programa muestra los multiplos de 8");
+            dato = Number(prompt("numero a multiplicar"));
+            let datos = document.getElementById("container");
+            contador = 0;
+           if( (dato != "") && (!isNaN(dato))){ 
+                do{
+                    contador++;
+                    resultado = contador* dato;
+                    datos.innerHTML += `${contador}  x  ${dato} = ${resultado} <br>`;
+           
+                }while(resultado < 500);
+                if (resultado == 500) datos.innerHTML += `Si es multiplo de 500`;
+                else datos.innerHTML += `no es multiplo de 500`
+            } else {
+                  alert("el valor es erroneo");
+            }
+
+            
+	</script>
+    </body>
+</html>

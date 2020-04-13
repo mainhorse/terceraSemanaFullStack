@@ -1,0 +1,60 @@
+<DOCTYPE html>
+<head>
+    <head>
+	<title> figuras </title>
+	<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    </head>
+    <body>
+	<script>
+	   opcion = prompt(`ingrese la letra de la figura:
+                         a : figura a
+                         b : figura b 
+                         c : figura c`);
+
+           tiempo = parseInt(prompt("ingrese un numero"));
+
+           function creMatriz(tamaño, fig){            
+		 for( i = 0 ; i < tamaño ; i++){
+                    matriz[i] = figura;
+                    figura += fig; 
+                 }   
+                 figura = "*";  
+            }
+ 
+            function dibujar(tamaño) {
+                    for( i = 0; i < tamaño ; i++){
+                       document.write(`${matriz[i]} <br>`);
+                    }
+                   
+           }
+
+           figura ="*";
+           matriz = [];
+
+           switch(opcion){
+               case "a" :  creMatriz(tiempo,"**"); 
+                           dibujar(tiempo); 
+                           matriz.reverse();
+                           matriz.shift(0);
+                           dibujar(tiempo -1);                          
+               break;
+               case "b" :  creMatriz(tiempo,"**"); 
+                           matriz.reverse();
+                           dibujar(tiempo);                                                       
+                           creMatriz(tiempo,"**");
+                           dibujar(tiempo);                        
+
+               break;
+               case "c" :  creMatriz(tiempo,"*"); 
+                           matriz.reverse(); 
+                           dibujar(tiempo)             
+               break;
+               default:
+                       alert("valor incorrecto");
+               break;
+           }
+                 
+	</script>
+    </body>
+</head>
